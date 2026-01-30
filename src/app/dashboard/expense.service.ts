@@ -28,6 +28,16 @@ export class ExpenseService {
     this.saveToLocal();
   }
 
+  updateExpense(id: string, data: Partial<Expense>) {
+    this.expenses.update((expenses) =>
+      expenses.map((expense) => (expense.id === id ? { ...expense, ...data } : expense)),
+    );
+  }
+
+  getExpenseById(id: string) {
+    return this.expenses().find((expense) => expense.id === id);
+  }
+
   deleteExpense(id: string) {
     this.expenses.update((allExp) => allExp.filter((exp) => exp.id !== id));
     this.saveToLocal();

@@ -1,12 +1,12 @@
-<form>
+<form [formGroup]="form" (ngSubmit)="onSubmitForm()">
   <div class="form-group">
     <p>
-      <label for="">Your Sum</label>
-      <input type="number" name="sum" value="" placeholder="10.00" />
+      <label for="sum">Your Sum</label>
+      <input type="number" name="sum" value="" id="sum" placeholder="10.00" formControlName="sum" />
     </p>
     <p>
       <!--  'Income' | 'Food' | 'Housing' | 'Utilities' | 'Other', -->
-      <select>
+      <select formControlName="type">
         <option value="Income">Income</option>
         <option value="Food">Food</option>
         <option value="Housing">Housing</option>
@@ -15,4 +15,8 @@
       </select>
     </p>
   </div>
+
+  <p>
+    <button type="submit">Add new Data</button>
+  </p>
 </form>

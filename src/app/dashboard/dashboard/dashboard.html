@@ -7,12 +7,20 @@
     {{ totalOutcome() | currency: 'EUR' }}
   </div>
 
-  <app-expense-form />
+  <app-expense-form [editingExpense]="editingExpense" (expenseAdded)="onAdded($event)" />
 
   <ul>
     @for (exp of expenses(); track exp.id) {
-      <li>
-        {{ exp }}
+      <li
+        [class]="{
+          income: exp.category === 'Income',
+          outcome: exp.category !== 'Income',
+        }"
+      >
+        {{ exp.date }} - {{ exp.amount | currency: 'EUR' }} - {{ exp.category }} -
+        {{ exp.description }}
+        <button type="button" (click)="onAdded(exp)">Edit</button>
+        <button type="button" (click)="onDeleteForm(exp.id)">Delete</button>
       </li>
     }
   </ul>
