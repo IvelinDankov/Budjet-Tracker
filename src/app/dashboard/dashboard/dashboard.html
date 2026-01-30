@@ -1,4 +1,19 @@
+<div class="p-4">
+  <h1>Budget Tracker</h1>
+  <div>Balance: {{ balance() | currency: 'EUR' }}</div>
 
-<h1>
-  {{i}}
-</h1>
+  <div>
+    Incomes: {{ totalIncome() | currency: 'EUR' }} | Outcomes:
+    {{ totalOutcome() | currency: 'EUR' }}
+  </div>
+
+  <app-expense-form />
+
+  <ul>
+    @for (exp of expenses(); track exp.id) {
+      <li>
+        {{ exp }}
+      </li>
+    }
+  </ul>
+</div>
